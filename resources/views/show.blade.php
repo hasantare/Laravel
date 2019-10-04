@@ -67,13 +67,8 @@
 
 
     <div class="content">
-    <ul>
-        @foreach($names as $name)
-            <li><a href="{{ $name }}">{!! $name !!}</a></li>
-            @endforeach
 
-    </ul>
-
+<h1>{{ $user[0] -> name }}</h1>
     </div>
     </body>
 </html>

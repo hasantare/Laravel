@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,16 +9,26 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB as DBAlias;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('students', function () {
     return view('students');
 });
+
 Route::get('class', function () {
-    return view('class');
+   $names = DBAlias::table('users')->pluck('name');
+   return view('class',compact('names'));
 });
-Route::get('course', function () {
+
+Route::get('course', function (){
     return view('course');
+});
+
+Route::get('/{name}' , function ($name){
+   $user = DB::table('users')->where('name',$name)->get();
+   return view('show' , compact('user'));
 });
